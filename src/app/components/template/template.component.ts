@@ -8,7 +8,7 @@ import { NgForm } from '@angular/forms';
 })
 export class TemplateComponent implements OnInit {
 
-  usuario: object = {
+  public usuario: object = {
     nombre: 'Gustavo',
     apellido: 'Muñoz',
     correo: 'tavoxpau@gmail.com'
@@ -21,6 +21,6 @@ export class TemplateComponent implements OnInit {
   guardar(forma: NgForm) {
     console.log('Forma: ' , forma);
     console.log('Valor: ' , forma.value);
-    console.log('Usuario: ' , this.usuario);
+    // console.log('Usuario: ' , this.usuario);
   }
 }
