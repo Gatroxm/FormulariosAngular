@@ -1,42 +1,42 @@
 <h4>Formularios <small>template</small></h4>
 <hr>
-<form (ngSubmit)="guardar(forma)" #forma="ngForm" class="needs-validation">
-    <div>
-        <div class="form-group row">
-            <label class="col-2 col-form-label">Nombre</label>
-            <div class="col-8">
-                <input class="form-control" type="text" placeholder="Nombre" [(ngModel)]="usuario.nombre" name="nombre" required minlength="5" #nombre="ngModel">
-                <div class="invalid-feedback" *ngIf="nombre.errors?.required">
-                    Este campo es requerido
-                </div>
-                <div class="invalid-feedback" *ngIf="nombre.errors?.minlength">
-                    Este campo requiere por lo menos {{ nombre.errors?.minlength.requiredLength }} caracteres y tienes solo {{ nombre.errors?.minlength.actualLength }}
-                </div>
+<form (ngSubmit)="guardar(forma)" #forma="ngForm">
+
+    <div class="form-row">
+        <label class="col-2 col-form-label">Nombre</label>
+        <div class="col-8">
+            <input class="form-control" type="text" placeholder="Nombre" ngModel name="nombre" required minlength="5" #nombre="ngModel" [ngClass]="{'is-valid': nombre.errors?.required || nombre.errors?.minlength}">
+            <div [ngClass]="{'invalid-feedback': nombre.errors?.required,  'valid-feedback': !nombre.errors?.required}" *ngIf="nombre.errors?.required">
+                Este campo es requerido
             </div>
-        </div>
-        <div class="form-group row">
-            <label class="col-2 col-form-label">Apellido</label>
-            <div class="col-8">
-                <input class="form-control" type="text" placeholder="Apellido" [(ngModel)]="usuario.apellido" name="apellido" required minlength="5" #apellido="ngModel">
-                <div class="invalid-feedback" *ngIf="apellido.errors?.required">
-                    Este campo es requerido
-                </div>
+            <div [ngClass]="{'invalid-feedback': nombre.errors?.minlength,  'valid-feedback': !nombre.errors?.minlength}" *ngIf="nombre.errors?.minlength">
+                Este campo requiere por lo menos {{ nombre.errors?.minlength.requiredLength }} caracteres y tienes solo {{ nombre.errors?.minlength.actualLength }}
             </div>
         </div>
     </div>
-    <div class="form-group row">
-        <label class="col-2 col-form-label">Correo</label>
-        <div class="col-md-8">
-            <input class="form-control" type="email" placeholder="Correo electrónico" [(ngModel)]="usuario.correo" name="correo" required minlength="5" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" #correo="ngModel">
-            <div class="invalid-feedback" *ngIf="correo.errors?.required">
+    <div class="form-row">
+        <label class="col-2 col-form-label">Apellido</label>
+        <div class="col-8">
+            <input class="form-control" type="text" placeholder="Apellido" ngModel name="apellido" required minlength="5" #apellido="ngModel" [ngClass]="{'is-valid': apellido.errors?.required}">
+            <div [ngClass]="{'invalid-feedback': apellido.errors?.required,  'valid-feedback': !apellido.errors?.required}" *ngIf="apellido.errors?.required">
                 Este campo es requerido
             </div>
-            <div class="invalid-feedback" *ngIf="correo.errors?.pattern">
+        </div>
+    </div>
+
+    <div class="form-row">
+        <label class="col-2 col-form-label">Correo</label>
+        <div class="col-md-8">
+            <input class="form-control" type="email" placeholder="Correo electrónico" ngModel name="correo" required minlength="5" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" #correo="ngModel" [ngClass]="{'is-valid': correo.errors?.required || correo.errors?.pattern}">
+            <div [ngClass]="{'invalid-feedback': correo.errors?.required,  'valid-feedback': !correo.errors?.required}" *ngIf="correo.errors?.required">
+                Este campo es requerido
+            </div>
+            <div [ngClass]="{'invalid-feedback': correo.errors?.pattern,  'valid-feedback': !correo.errors?.pattern}" *ngIf="correo.errors?.pattern">
                 no es un correo valido
             </div>
         </div>
     </div>
-    <div class="form-group row">
+    <div class="form-row">
         <label class="col-2 col-form-label">&nbsp;</label>
         <div class="input-group col-md-8">
             <button type="submit" class="btn btn-outline-primary">Guardar</button>
