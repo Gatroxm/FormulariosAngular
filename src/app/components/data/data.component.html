@@ -54,6 +54,18 @@
         </div>
     </div>
     <div class="form-group row">
+        <label class="col-2 col-form-label">nombre de usuario</label>
+        <div class="col-md-8">
+
+            <input class="form-control" type="text" placeholder="Contraseña" formControlName="username">
+            <div class="invalid-feedback" *ngIf="!forma.controls['username'].valid">
+                <div *ngIf="forma.controls['username'].errors?.required">
+                    El nombre de usuario es requerido
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="form-group row">
         <label class="col-2 col-form-label">Password</label>
         <div class="col-md-8">
 
@@ -62,14 +74,14 @@
                 <div *ngIf="forma.controls['password1'].errors?.required">
                     la contraseña es necesario
                 </div>
-                <div *ngIf="forma.controls['password1'].controls['apellido'].errors?.minlength">
+                <div *ngIf="forma.controls['password1'].errors?.minlength">
                     El campo deve ser mayor a 8 caracteres
                 </div>
             </div>
         </div>
     </div>
     <div class="form-group row">
-        <label class="col-2 col-form-label">Password2</label>
+        <label class="col-2 col-form-label">Repetir password</label>
         <div class="col-md-8">
 
             <input class="form-control" type="password" placeholder="Repetir Contraseña" formControlName="password2">
@@ -77,8 +89,8 @@
                 <div *ngIf="forma.controls['password2'].errors?.required">
                     la contraseña es necesario
                 </div>
-                <div *ngIf="forma.controls['password2'].controls['apellido'].errors?.minlength">
-                    El campo deve ser mayor a 8 caracteres
+                <div *ngIf="forma.controls['password2'].errors?.noIguales">
+                    las contraseñas no son iguales
                 </div>
             </div>
         </div>
@@ -101,6 +113,10 @@
     </div>
     <pre>
         {{ forma.valid }}
+    </pre>
+    <br>
+    <pre>
+        {{ forma.status }}
     </pre>
 
 </form>
